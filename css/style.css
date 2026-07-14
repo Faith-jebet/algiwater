@@ -1469,3 +1469,343 @@ textarea#comment.massage-bt::placeholder {
 }
 
 /* copyright section end */
+
+/* ==========================================
+   Facebook Section  
+   ========================================== */
+.facebook_section {
+  width: 100%;
+  float: left;
+  background-color: #f8f9fa;
+}
+
+.facebook_card {
+  width: 100%;
+  float: left;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facebook_card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+.facebook_card_body {
+  padding: 30px 24px 24px;
+  text-align: center;
+}
+
+.facebook_icon {
+  width: 60px;
+  height: 60px;
+  background: #1877f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.facebook_icon i {
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.facebook_title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.facebook_text {
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.facebook_btn {
+  display: inline-block;
+  background: #1877f2;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+.facebook_btn:hover {
+  background: #145dbf;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ==========================================
+   Hero Typing Animation
+   ========================================== */
+.hero-typing::after {
+  content: "|";
+  animation: blink-cursor 0.8s steps(1) infinite;
+  color: #ecb502;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-typed::after {
+  content: "";
+}
+
+/* ==========================================
+   Scroll Fade-In Animation
+   ========================================== */
+.fade-in-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   Gallery Carousel
+   ========================================== */
+#galleryCarousel {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+#galleryCarousel .carousel-inner {
+  border-radius: 12px;
+}
+
+#galleryCarousel .carousel-item img {
+  height: 450px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+#galleryCarousel .carousel-indicators li {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid #ffffff;
+  margin: 0 6px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#galleryCarousel .carousel-indicators li.active {
+  background-color: #f9bc19;
+  border-color: #f9bc19;
+  transform: scale(1.2);
+}
+
+#galleryCarousel .carousel-control-prev,
+#galleryCarousel .carousel-control-next {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.85;
+  transition: opacity 0.35s ease, background 0.3s ease;
+}
+
+#galleryCarousel:hover .carousel-control-prev,
+#galleryCarousel:hover .carousel-control-next {
+  opacity: 1;
+}
+
+#galleryCarousel .carousel-control-prev {
+  left: 16px;
+}
+
+#galleryCarousel .carousel-control-next {
+  right: 16px;
+}
+
+#galleryCarousel .carousel-control-prev:hover,
+#galleryCarousel .carousel-control-next:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#galleryCarousel .carousel-control-prev-icon,
+#galleryCarousel .carousel-control-next-icon {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 767px) {
+  #galleryCarousel .carousel-item img {
+    height: 260px;
+  }
+  #galleryCarousel .carousel-control-prev,
+  #galleryCarousel .carousel-control-next {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  #galleryCarousel .carousel-item img {
+    height: 200px;
+  }
+}
+
+/* ==========================================
+   Video Showcase Card
+   ========================================== */
+.video_showcase_section {
+  width: 100%;
+  float: left;
+}
+
+.video_card {
+  width: 100%;
+}
+
+.video_card_inner {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  line-height: 0;
+  max-height: 380px;
+}
+
+.video_poster {
+  width: 100%;
+  height: 380px;
+  display: block;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.video_play_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.video_card_inner:hover .video_play_overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.play_icon_wrap {
+  width: 80px;
+  height: 80px;
+  background: #f9bc19;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.video_card_inner:hover .play_icon_wrap {
+  transform: scale(1.08);
+  background: #e0a800;
+}
+
+.play_icon_wrap i {
+  font-size: 30px;
+  color: #1a1a1a;
+  margin-left: 4px;
+}
+
+.play_text {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.video_card_inner.playing .video_play_overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video_card_inner.playing .video_play_overlay:hover {
+  opacity: 1;
+}
+
+/* View More Products Button */
+.view_products_btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #252525;
+  background: transparent;
+  border: 2px solid #252525;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.view_products_btn i {
+  margin-left: 8px;
+  animation: bounce-down 1.5s ease-in-out infinite;
+}
+
+.view_products_btn:hover {
+  background: #252525;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (max-width: 767px) {
+  .play_icon_wrap {
+    width: 60px;
+    height: 60px;
+  }
+  .play_icon_wrap i {
+    font-size: 22px;
+  }
+  .play_text {
+    font-size: 15px;
+  }
+  .video_card_inner {
+    max-height: 260px;
+  }
+  .video_poster {
+    height: 260px;
+  }
+  .view_products_btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

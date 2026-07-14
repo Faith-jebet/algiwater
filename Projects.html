@@ -56,18 +56,9 @@
                          <li class="nav-item">
                           <a class="nav-link" href="products.html">Products</a>
                        </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="services.html">Services</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link active" href="projects.html">Projects</a>
-                           </li>
-                         <li class="nav-item">
-                           <a class="nav-link" href="principles.html">Principles</a>
-                        </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="contact.html">Contact</a>
-                           </li>
+<li class="nav-item">
+                               <a class="nav-link" href="contact.html">Contact</a>
+                            </li>
                         </ul>
                      </div>
                   </nav>
@@ -308,23 +299,7 @@
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
       <script src="js/plugin.js"></script>
-
-      <script>
-         // JavaScript to toggle read more content
-         document.querySelectorAll('.readmore_button').forEach(button => {
-            button.addEventListener('click', function(event) {
-               event.preventDefault();
-               const content = this.parentElement.previousElementSibling;
-               if (content.style.display === 'none') {
-                  content.style.display = 'block';
-                  this.textContent = 'Read Less';
-               } else {
-                  content.style.display = 'none';
-                  this.textContent = 'Read More';
-               }
-            });
-         });
-      </script>
+      <script src="js/custom.js"></script>
    </body>
 </html>  
 

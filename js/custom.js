@@ -1,317 +1,117 @@
-// /*---------------------------------------------------------------------
-//     File Name: custom.js
-// ---------------------------------------------------------------------*/
+(function () {
+  "use strict";
 
-// $(function () {
-	
-// 	"use strict";
-	
-// 	/* Preloader
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	setTimeout(function () {
-// 		$('.loader_bg').fadeToggle();
-// 	}, 1500);
-	
-// 	/* JQuery Menu
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+  /* =============================================
+     Hero Typing Animation
+     Types out the banner headline letter by letter
+  ============================================= */
+  var heroEl = document.querySelector(".banner_hero .banner_taital");
+  if (heroEl) {
+    var fullText = heroEl.textContent.trim();
+    heroEl.textContent = "";
+    heroEl.classList.add("hero-typing");
+    var i = 0;
+    var typingInterval = setInterval(function () {
+      if (i < fullText.length) {
+        heroEl.textContent += fullText.charAt(i);
+        i++;
+      } else {
+        clearInterval(typingInterval);
+        heroEl.classList.remove("hero-typing");
+        heroEl.classList.add("hero-typed");
+      }
+    }, 45);
+  }
 
-// 	$(document).ready(function () {
-// 		$('header nav').meanmenu();
-// 	});
-	
-// 	/* Tooltip
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(document).ready(function(){
-// 		$('[data-toggle="tooltip"]').tooltip();
-// 	});
-	
-// 	/* sticky
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(document).ready(function(){
-// 		$(".sticky-wrapper-header").sticky({topSpacing:0});
-// 	});
-	
-// 	/* Mouseover
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(document).ready(function(){
-// 		$(".main-menu ul li.megamenu").mouseover(function(){
-// 			if (!$(this).parent().hasClass("#wrapper")){
-// 			$("#wrapper").addClass('overlay');
-// 			}
-// 		});
-// 		$(".main-menu ul li.megamenu").mouseleave(function(){
-// 			$("#wrapper").removeClass('overlay');
-// 		});
-// 	});
-	
-// 	/* NiceScroll
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(".brand-box").niceScroll({
-// 		cursorcolor:"#9b9b9c",
-// 	});	
-	
-// 	/* NiceSelect
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(document).ready(function() {
-// 		$('select').niceSelect();
-// 	});	
-		
-	
-// 	/* Scroll to Top
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(window).on('scroll', function (){
-//         scroll = $(window).scrollTop();
-//         if (scroll >= 100){
-//           $("#back-to-top").addClass('b-show_scrollBut')
-//         }else{
-//           $("#back-to-top").removeClass('b-show_scrollBut')
-//         }
-//       });
-//       $("#back-to-top").on("click", function(){
-//         $('body,html').animate({
-//           scrollTop: 0
-//         }, 1000);
-//     });
-	
-// 	/* Contact-form
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-//   if (document.querySelector("#showMap")) { 
-// 	  	document.querySelector("#showMap").addEventListener("click", function (e) { 
-// 	  		e.preventDefault(); 
-// 	  		$(".map_form_container").addClass("map_show"); 
-// 	  		document.querySelector(".contact_heading").innerText = "Location"; 
-// 	  	}); 
-//   	}
-// 	if (document.querySelector("#showForm")) { 
-// 		document.querySelector("#showForm").addEventListener("click", function (e) { 
-// 			e.preventDefault(); $(".map_form_container").removeClass("map_show"); 
-// 			document.querySelector(".contact_heading").innerText = "Request A Call Back"; 
-// 		}); 
-// 	}
+  /* =============================================
+     Scroll-Tiggered Fade-In Animation
+     Sections fade in when they scroll into view
+  ============================================= */
+  var fadeEls = document.querySelectorAll(".about_section, .services_section, .facebook_section, .projects_section, .footer_section, .box_main, .facebook_card, .container_main");
+  if (fadeEls.length > 0 && "IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
 
-// 	$.validator.setDefaults( {
-// 		submitHandler: function () {
-// 			alert( "submitted!" );
-// 		}
-// 	} );
-	
-// 	$( document ).ready( function () {
-// 		$( "#contact-form" ).validate( {
-// 			rules: {
-// 				firstname: "required",
-// 				email: {
-// 					required: true,
-// 					email: true
-// 				},
-// 				lastname: "required",
-// 				message: "required",
-// 				agree: "required"
-// 			},
-// 			messages: {
-// 				firstname: "Please enter your firstname",
-// 				email: "Please enter a valid email address",
-// 				lastname: "Please enter your lastname",
-// 				username: {
-// 					required: "Please enter a username",
-// 					minlength: "Your username must consist of at least 2 characters"
-// 				},
-// 				message: "Please enter your Message",
-// 				agree: "Please accept our policy"
-// 			},
-// 			errorElement: "div",
-// 			errorPlacement: function ( error, element ) {
-// 				// Add the `help-block` class to the error element
-// 				error.addClass( "help-block" );
+    fadeEls.forEach(function (el) {
+      el.classList.add("fade-in-hidden");
+      observer.observe(el);
+    });
+  }
 
-// 				if ( element.prop( "type" ) === "checkbox" ) {
-// 					error.insertAfter( element.parent( "input" ) );
-// 				} else {
-// 					error.insertAfter( element );
-// 				}
-// 			},
-// 			highlight: function ( element, errorClass, validClass ) {
-// 				$( element ).parents( ".col-md-4, .col-md-12" ).addClass( "has-error" ).removeClass( "has-success" );
-// 			},
-// 			unhighlight: function (element, errorClass, validClass) {
-// 				$( element ).parents( ".col-md-4, .col-md-12" ).addClass( "has-success" ).removeClass( "has-error" );
-// 			}
-// 		} );
-// 	});
-	
-// 	/* heroslider
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	var swiper = new Swiper('.heroslider', {
-// 		spaceBetween: 30,
-// 		centeredSlides: true,
-// 		slidesPerView: 'auto',
-// 		paginationClickable: true,
-// 		loop: true,
-// 		autoplay: {
-// 			delay: 2500,
-// 			disableOnInteraction: false,
-// 		},
-// 		pagination: {
-// 			el: '.swiper-pagination',
-// 			clickable: true,
-// 			dynamicBullets: true
-// 		},
-// 	});
-	
+  /* =============================================
+     Read More Toggle — works on all pages
+  ============================================= */
+  document.querySelectorAll(".readmore_button").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      var parent = button.closest(".box_main, .project_main");
+      if (!parent) return;
+      var content = parent.querySelector(".readmore_content, .readmore_contents");
+      if (!content) {
+        content = button.parentElement.previousElementSibling;
+      }
+      if (!content) return;
+      if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        button.textContent = "Read Less";
+      } else {
+        content.style.display = "none";
+        button.textContent = "Read More";
+      }
+    });
+  });
 
-// 	/* Product Filters
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+  /* =============================================
+     Navbar Toggler (mobile menu)
+  ============================================= */
+  var toggler = document.querySelector(".navbar-toggler");
+  var menu = document.getElementById("navbarSupportedContent");
+  if (toggler && menu) {
+    toggler.addEventListener("click", function (event) {
+      event.preventDefault();
+      menu.classList.toggle("show");
+      toggler.setAttribute("aria-expanded", menu.classList.contains("show") ? "true" : "false");
+    });
+    menu.querySelectorAll(".nav-link").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.classList.remove("show");
+        toggler.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+/* =============================================
+     Gallery Carousel Init
+  ============================================= */
+  var galleryCarousel = document.getElementById("galleryCarousel");
+  if (galleryCarousel && typeof $ !== "undefined") {
+    $("#galleryCarousel").carousel({ interval: 3000, pause: "hover" });
+  }
 
-// 	var swiper = new Swiper('.swiper-product-filters', {
-// 		slidesPerView: 3,
-// 		slidesPerColumn: 2,
-// 		spaceBetween: 30,
-// 		breakpoints: {
-// 			1024: {
-// 			  slidesPerView: 3,
-// 			  spaceBetween: 30,
-// 			},
-// 			768: {
-// 			  slidesPerView: 2,
-// 			  spaceBetween: 30,
-// 			  slidesPerColumn: 1,
-// 			},
-// 			640: {
-// 			  slidesPerView: 2,
-// 			  spaceBetween: 20,
-// 			  slidesPerColumn: 1,
-// 			},
-// 			480: {
-// 			  slidesPerView: 1,
-// 			  spaceBetween: 10,
-// 			  slidesPerColumn: 1,
-// 			}
-// 		  },
-// 		pagination: {
-// 			el: '.swiper-pagination',
-// 			clickable: true,
-// 			dynamicBullets: true
-// 		}
-//     });
-
-// 	/* Countdown
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$('[data-countdown]').each(function () {
-//         var $this = $(this),
-// 		finalDate = $(this).data('countdown');
-// 		$this.countdown(finalDate, function (event) {
-// 			var $this = $(this).html(event.strftime(''
-// 			+ '<div class="time-bar"><span class="time-box">%w</span> <span class="line-b">weeks</span></div> '
-// 			+ '<div class="time-bar"><span class="time-box">%d</span> <span class="line-b">days</span></div> '
-// 			+ '<div class="time-bar"><span class="time-box">%H</span> <span class="line-b">hr</span></div> '
-// 			+ '<div class="time-bar"><span class="time-box">%M</span> <span class="line-b">min</span></div> '
-// 			+ '<div class="time-bar"><span class="time-box">%S</span> <span class="line-b">sec</span></div>'));
-// 		});
-//     });
-	
-// 	/* Deal Slider
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$('.deal-slider').slick({
-//         dots: false,
-//         infinite: false,
-// 		prevArrow: '.previous-deal',
-// 		nextArrow: '.next-deal',
-//         speed: 500,
-//         slidesToShow: 3,
-//         slidesToScroll: 3,
-// 		infinite: false,
-//         responsive: [{
-//             breakpoint: 1024,
-//             settings: {
-//                 slidesToShow: 3,
-//                 slidesToScroll: 2,
-//                 infinite: true,
-//                 dots: false
-//             }
-//         }, {
-//             breakpoint: 768,
-//             settings: {
-//                 slidesToShow: 2,
-//                 slidesToScroll: 2
-//             }
-//         }, {
-//             breakpoint: 480,
-//             settings: {
-//                 slidesToShow: 1,
-//                 slidesToScroll: 1
-//             }
-//         }]
-//     });
-	
-// 	/* News Slider
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$('#news-slider').slick({
-//         dots: false,
-//         infinite: false,
-// 		prevArrow: '.previous',
-// 		nextArrow: '.next',
-//         speed: 500,
-//         slidesToShow: 1,
-//         slidesToScroll: 1,
-//         responsive: [{
-//             breakpoint: 1024,
-//             settings: {
-//                 slidesToShow: 1,
-//                 slidesToScroll: 1,
-//                 infinite: true,
-//                 dots: false
-//             }
-//         }, {
-//             breakpoint: 600,
-//             settings: {
-//                 slidesToShow: 1,
-//                 slidesToScroll: 1
-//             }
-//         }, {
-//             breakpoint: 480,
-//             settings: {
-//                 slidesToShow: 1,
-//                 slidesToScroll: 1
-//             }
-//         }]
-//     });
-	
-// 	/* Fancybox
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	
-// 	$(".fancybox").fancybox({
-// 		maxWidth: 1200,
-// 		maxHeight: 600,
-// 		width: '70%',
-// 		height: '70%',
-// 	});
-	
-// 	/* Toggle sidebar
-// 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-     
-//      $(document).ready(function () {
-//        $('#sidebarCollapse').on('click', function () {
-//           $('#sidebar').toggleClass('active');
-//           $(this).toggleClass('active');
-//        });
-//      });
-
-//      /* Product slider 
-//      -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-//      // optional
-//      $('#blogCarousel').carousel({
-//         interval: 5000
-//      });
-
-
-// });
+  /* =============================================
+     Video Showcase Play Button
+  ============================================= */
+  var videoCard = document.querySelector(".video_card_inner");
+  var playBtn = document.getElementById("videoPlayBtn");
+  var video = document.getElementById("showcaseVideo");
+  if (videoCard && playBtn && video) {
+    playBtn.addEventListener("click", function () {
+      videoCard.classList.add("playing");
+      video.play();
+    });
+    video.addEventListener("ended", function () {
+      videoCard.classList.remove("playing");
+    });
+    video.addEventListener("pause", function () {
+      videoCard.classList.remove("playing");
+    });
+  }
+})();

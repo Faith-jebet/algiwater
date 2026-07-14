@@ -65,15 +65,9 @@
                      <li class="nav-item">
                         <a class="nav-link" href="products.html">Products</a>
                      </li>
-                     <li class="nav-item ">
-                        <a class="nav-link" href="services.html">Services</a>
-                     </li>
-                     <li class="nav-item active">
-                        <a class="nav-link" href="principles.html"> Principles</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                     </li>
+<li class="nav-item">
+                         <a class="nav-link" href="contact.html">Contact</a>
+                      </li>
                   </ul>
                </div>
             </nav>
@@ -221,53 +215,7 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/plugin.js"></script>
-
-      <script>
-         // JavaScript to toggle read more content
-         document.querySelectorAll('.readmore_button').forEach(button => {
-            button.addEventListener('click', function(event) {
-               event.preventDefault();
-               const content = this.parentElement.previousElementSibling;
-               if (content.style.display === 'none') {
-                  content.style.display = 'block';
-                  this.textContent = 'Read Less';
-               } else {
-                  content.style.display = 'none';
-                  this.textContent = 'Read More';
-               }
-            });
-         });
-      
-            $(document).ready(function() {
-               $('.read_more_toggle').on('click', function(e) {
-                  e.preventDefault();
-                  $(this).closest('.project_main').find('.readmore_content').slideToggle();
-               });
-            });
-             (function () {
-        const toggler = document.querySelector(".navbar-toggler");
-        const menu = document.getElementById("navbarSupportedContent");
-        if (!toggler || !menu) {
-          return;
-        }
-
-        toggler.addEventListener("click", function (event) {
-          event.preventDefault();
-          menu.classList.toggle("show");
-          const isOpen = menu.classList.contains("show");
-          toggler.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        });
-
-        // Close the menu when a nav link is tapped (nice on mobile)
-        menu.querySelectorAll(".nav-link").forEach(function (link) {
-          link.addEventListener("click", function () {
-            menu.classList.remove("show");
-            toggler.setAttribute("aria-expanded", "false");
-          });
-        });
-      })();
-         
-      </script>
+<script src="js/plugin.js"></script>
+      <script src="js/custom.js"></script>
    </body>
-</html>  
+</html>

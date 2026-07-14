@@ -28,7 +28,88 @@
       <!-- fonts -->
       <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       
+
+       <!-- Inline styles for the about-page video card (add to style.css and remove this block if you prefer) -->
+       <style>
+         /* Bootstrap rows are flex containers with align-items: stretch by default,
+            so both col-md-6 children already match height. We use flex-grow all the
+            way down instead of height:100% chains, since percentage heights break
+            silently if any ancestor lacks a definite height. */
+         .about_section .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+         }
+         .about_section .row > [class*="col-"] {
+            display: flex;
+            flex-direction: column;
+         }
+         .about_section .video_card {
+            position: relative;
+            flex: 1 1 auto;
+            width: 100%;
+            min-height: 320px; /* fallback for very short text columns */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+         }
+         .about_section .video_card_inner {
+            position: relative;
+            flex: 1 1 auto;
+            width: 100%;
+            max-height: none;
+            background: #000;
+         }
+         .about_section .video_poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            z-index: 1;
+         }
+         .about_section .video_play_overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.35);
+            cursor: pointer;
+            pointer-events: auto;
+            transition: background 0.25s ease;
+         }
+         .about_section .video_play_overlay:hover {
+            background: rgba(0,0,0,0.5);
+         }
+         .about_section .video_play_overlay.is_playing {
+            opacity: 0;
+            pointer-events: none;
+         }
+         .about_section .play_icon_wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #d10000;
+         }
+         .about_section .play_text {
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+         }
+       </style>
+
    </head>
    <body>
       <!-- header top section start -->
@@ -65,15 +146,9 @@
                      <li class="nav-item">
                         <a class="nav-link" href="products.html">Products</a>
                      </li>
-                     <li class="nav-item ">
-                        <a class="nav-link" href="services.html">Services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="principles.html"> Principles</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                     </li>
+<li class="nav-item">
+                         <a class="nav-link" href="contact.html">Contact</a>
+                      </li>
                   </ul>
                </div>
             </nav>
@@ -101,8 +176,18 @@
                     </ul></p>
                </div>
                <div class="col-md-6">
-                  <div class="about_img">
-                        <img src="https://res.cloudinary.com/dduqhj5oh/image/upload/v1783767049/about3_uslhxf.jpg" alt="Algiwater team on site">
+                  <div class="video_card">
+                     <div class="video_card_inner">
+                        <video id="aboutShowcaseVideo" class="video_poster" playsinline>
+                           <source src="https://res.cloudinary.com/dduqhj5oh/video/upload/v1784027983/AQM2AD_yF7KnzcIC9baPWsqur_bSz45cGBOfxnxdOPY-NJpVripPmbbNS-j-I2yXfsvuujvFsTsJJWxyM9BBwDjM6Cu3JQW2nARoLNRtUQ_rkq6w9.mp4" type="video/mp4">
+                        </video>
+                        <div class="video_play_overlay" id="aboutVideoPlayBtn">
+                           <div class="play_icon_wrap">
+                              <i class="fa fa-play" aria-hidden="true"></i>
+                           </div>
+                           <span class="play_text">Watch Our Story</span>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
@@ -110,6 +195,55 @@
       </div>
       
       <!-- about section end -->
+      <!-- principles section start -->
+      <div class="services_section layout_padding">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12">
+                  <h1 class="services_taital">
+                     <span class="section_title">Our Principles<span class="title_underline"></span></span>
+                  </h1>
+               </div>
+            </div>
+            <div class="services_section_2">
+               <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="box_main">
+                        <div class="service_img"><img src="images/icon-1.png" alt="Mission icon" /></div>
+                        <h4 class="development_text">MISSION</h4>
+                        <p class="services_text">To provide affordable and sustainable water solutions for various communities and organizations across Kenya.</p>
+                        <div class="readmore_bt"><a href="#" class="readmore_button">Read More</a></div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="box_main">
+                        <div class="service_img"><img src="images/icon-2.png" alt="Vision icon" /></div>
+                        <h4 class="development_text">VISION</h4>
+                        <p class="services_text">To become a leading provider of water solutions in Kenya.</p>
+                        <div class="readmore_bt"><a href="#" class="readmore_button">Read More</a></div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="box_main">
+                        <div class="service_img"><img src="images/icon-3.png" alt="Core Values icon" /></div>
+                        <h4 class="development_text">CORE VALUES</h4>
+                        <p class="services_text">Expertise<br />Excellence<br />Edge</p>
+                        <div class="readmore_bt"><a href="#" class="readmore_button">Read More</a></div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="box_main">
+                        <div class="service_img"><img src="images/icon-2.png" alt="Impacts icon" /></div>
+                        <h4 class="development_text">IMPACTS</h4>
+                        <p class="services_text">Since our inception, we have continued to have a positive impact on communities across Kenya. We have transformed their livelihoods by providing borehole drilling services and excavating water pans in order to enhance the provision of water.</p>
+                        <div class="readmore_bt"><a href="#" class="readmore_button">Read More</a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- principles section end -->
       <!-- footer section start -->
       <div class="footer_section layout_padding">
          <div class="container">
@@ -189,53 +323,46 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/plugin.js"></script>
+<script src="js/plugin.js"></script>
+      <script src="js/custom.js"></script>
 
+      <!-- About page video play/pause toggle -->
       <script>
-         // JavaScript to toggle read more content
-         document.querySelectorAll('.readmore_button').forEach(button => {
-            button.addEventListener('click', function(event) {
-               event.preventDefault();
-               const content = this.parentElement.previousElementSibling;
-               if (content.style.display === 'none') {
-                  content.style.display = 'block';
-                  this.textContent = 'Read Less';
+         document.addEventListener('DOMContentLoaded', function () {
+            var video = document.getElementById('aboutShowcaseVideo');
+            var overlay = document.getElementById('aboutVideoPlayBtn');
+
+            if (!video || !overlay) {
+               console.warn('About video: #aboutShowcaseVideo or #aboutVideoPlayBtn not found in the page.');
+               return;
+            }
+
+            overlay.addEventListener('click', function () {
+               var playPromise = video.play();
+               if (playPromise !== undefined) {
+                  playPromise
+                     .then(function () {
+                        overlay.classList.add('is_playing');
+                     })
+                     .catch(function (err) {
+                        console.warn('About video: play() was blocked or failed:', err);
+                     });
                } else {
-                  content.style.display = 'none';
-                  this.textContent = 'Read More';
+                  overlay.classList.add('is_playing');
                }
             });
-         });
-      
-            $(document).ready(function() {
-               $('.read_more_toggle').on('click', function(e) {
-                  e.preventDefault();
-                  $(this).closest('.project_main').find('.readmore_content').slideToggle();
-               });
+
+            video.addEventListener('click', function () {
+               if (!video.paused) {
+                  video.pause();
+                  overlay.classList.remove('is_playing');
+               }
             });
-             (function () {
-        const toggler = document.querySelector(".navbar-toggler");
-        const menu = document.getElementById("navbarSupportedContent");
-        if (!toggler || !menu) {
-          return;
-        }
 
-        toggler.addEventListener("click", function (event) {
-          event.preventDefault();
-          menu.classList.toggle("show");
-          const isOpen = menu.classList.contains("show");
-          toggler.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        });
-
-        // Close the menu when a nav link is tapped (nice on mobile)
-        menu.querySelectorAll(".nav-link").forEach(function (link) {
-          link.addEventListener("click", function () {
-            menu.classList.remove("show");
-            toggler.setAttribute("aria-expanded", "false");
-          });
-        });
-      })();
-         
+            video.addEventListener('ended', function () {
+               overlay.classList.remove('is_playing');
+            });
+         });
       </script>
    </body>
-</html>  
+</html>
