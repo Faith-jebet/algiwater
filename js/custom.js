@@ -89,14 +89,6 @@
     });
   }
 /* =============================================
-     Gallery Carousel Init
-  ============================================= */
-  var galleryCarousel = document.getElementById("galleryCarousel");
-  if (galleryCarousel && typeof $ !== "undefined") {
-    $("#galleryCarousel").carousel({ interval: 3000, pause: "hover" });
-  }
-
-  /* =============================================
      Video Showcase Play Button
   ============================================= */
   var videoCard = document.querySelector(".video_card_inner");

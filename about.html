@@ -58,7 +58,7 @@
             position: relative;
             flex: 1 1 auto;
             width: 100%;
-            max-height: none;
+max-height: none;
             background: #000;
          }
          .about_section .video_poster {
@@ -108,6 +108,162 @@
             font-weight: 600;
             letter-spacing: 0.5px;
          }
+
+</style>
+
+        <!-- Process video cards -->
+       <style>
+          .process_video_row {
+             max-width: 1100px;
+             margin-left: auto;
+             margin-right: auto;
+          }
+          .process_video_card {
+             position: relative;
+             border-radius: 14px;
+             overflow: hidden;
+             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+             background: #000;
+             margin-bottom: 30px;
+             transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+          .process_video_card:hover {
+             transform: translateY(-4px);
+             box-shadow: 0 14px 32px rgba(0,0,0,0.2);
+          }
+          .process_video_card video {
+             width: 100%;
+             display: block;
+             aspect-ratio: 16 / 9;
+             object-fit: cover;
+          }
+          .process_video_overlay {
+             position: absolute;
+             inset: 0;
+             background: rgba(0,0,0,0.3);
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             cursor: pointer;
+             transition: background 0.25s ease;
+             z-index: 2;
+          }
+          .process_video_overlay:hover {
+             background: rgba(0,0,0,0.45);
+          }
+          .process_video_overlay.is_playing {
+             opacity: 0;
+             pointer-events: none;
+          }
+          .process_video_overlay .play_icon_wrap {
+             width: 56px;
+             height: 56px;
+             border-radius: 50%;
+             background: #fff;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: 18px;
+             color: #d10000;
+          }
+          .process_video_title {
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             right: 0;
+             padding: 12px 16px;
+             background: linear-gradient(transparent, rgba(0,0,0,0.7));
+             color: #fff;
+             font-weight: 600;
+             font-size: 16px;
+             z-index: 3;
+             margin: 0;
+          }
+
+          /* Smaller, more cards per row on large screens: back to 4-up on
+             desktop and 3-up on tablets, so individual videos stay compact
+             instead of being blown up to half the page width. */
+          @media (min-width: 992px) {
+             .process_video_row .col-lg-3 {
+                flex: 0 0 33.3333%;
+                max-width: 33.3333%;
+             }
+             .process_video_title { font-size: 16px; padding: 12px 16px; }
+          }
+          @media (min-width: 768px) and (max-width: 991px) {
+             .process_video_row .col-lg-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+             }
+          }
+          @media (max-width: 575px) {
+             .process_video_row .col-sm-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+             }
+             .process_video_title { font-size: 14px; padding: 10px 14px; }
+          }
+
+          /* Extra videos start hidden; JS reveals them when "View More" is clicked.
+             Any new video card added with class "extra-video-item" will automatically
+             be picked up. */
+          .extra-video-item { display: none; }
+
+          .view_more_wrap {
+             text-align: center;
+             margin-top: 10px;
+             margin-bottom: 10px;
+          }
+          .view_more_btn {
+             display: inline-block;
+             padding: 10px 32px;
+             background: #d10000;
+             color: #fff;
+             border: none;
+             border-radius: 30px;
+             font-weight: 600;
+             font-size: 15px;
+             letter-spacing: 0.5px;
+             cursor: pointer;
+             transition: background 0.25s ease, transform 0.2s ease;
+          }
+          .view_more_btn:hover {
+             background: #a80000;
+             transform: translateY(-2px);
+          }
+          .view_more_btn:focus {
+             outline: none;
+             box-shadow: 0 0 0 3px rgba(209,0,0,0.3);
+          }
+       </style>
+
+       <!-- Boundaries between About / Process / Principles layers -->
+       <style>
+          .layer_divider {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 0 15px;
+          }
+          .layer_divider::before {
+             content: "";
+             display: block;
+             height: 1px;
+             background: linear-gradient(
+                90deg,
+                rgba(209,0,0,0) 0%,
+                rgba(209,0,0,0.35) 20%,
+                rgba(209,0,0,0.35) 80%,
+                rgba(209,0,0,0) 100%
+             );
+          }
+          .layer_divider_dot {
+             width: 9px;
+             height: 9px;
+             border-radius: 50%;
+             background: #d10000;
+             margin: -5px auto 0;
+             position: relative;
+          }
        </style>
 
    </head>
@@ -118,7 +274,7 @@
             <div class="row">
                <div class="col-sm-12">
                   <div class="header_top_main">
-                     <div class="call_text"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> +254 727 896 069 /0723781069</a></div>
+                     <div class="call_text"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> +254 727896960 /0799022588</a></div>
                      <div class="call_text_2"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> algiwater@gmail.com</a></div>
                      <div class="call_text_1"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Nairobi, Kenya</a></div>
                   </div>
@@ -192,11 +348,101 @@
                </div>
             </div>
          </div>
-      </div>
+</div>
+       
+       <!-- about section end -->
+
+       <!-- boundary between About Us and Our Process -->
+       <div class="layer_divider">
+          <div class="layer_divider_dot"></div>
+       </div>
+
+       <!-- process section start -->
+<div class="services_section layout_padding" style="background-color: #f4f4f4;">
+          <div class="container-fluid">
+             <div class="row">
+                <div class="col-sm-12">
+                   <h1 class="services_taital">
+                      <span class="section_title">Featured Processess<span class="title_underline"></span></span>
+                   </h1>
+                </div>
+             </div>
+             <div class="services_section_2">
+                <div class="row process_video_row" id="processVideoRow">
+                   <div class="col-lg-3 col-sm-6">
+                      <div class="process_video_card">
+                         <video class="process_video" playsinline muted loop preload="metadata">
+                            <source src="https://res.cloudinary.com/dduqhj5oh/video/upload/v1784061887/VID-20260714-WA0025_hbqtco.mp4" type="video/mp4">
+                         </video>
+                         <div class="process_video_overlay">
+                            <div class="play_icon_wrap"><i class="fa fa-play" aria-hidden="true"></i></div>
+                         </div>
+                         <h4 class="process_video_title">1. Rig Setup &amp; Mobilization</h4>
+                      </div>
+                   </div>
+                   <div class="col-lg-3 col-sm-6">
+                      <div class="process_video_card">
+                         <video class="process_video" playsinline muted loop preload="metadata">
+                            <source src="https://res.cloudinary.com/dduqhj5oh/video/upload/v1784061883/VID-20260714-WA0018_w3wpw7.mp4" type="video/mp4">
+                         </video>
+                         <div class="process_video_overlay">
+                            <div class="play_icon_wrap"><i class="fa fa-play" aria-hidden="true"></i></div>
+                         </div>
+                         <h4 class="process_video_title">2. Borehole Drilling</h4>
+                      </div>
+                   </div>
+                   <div class="col-lg-3 col-sm-6">
+                      <div class="process_video_card">
+                         <video class="process_video" playsinline muted loop preload="metadata">
+                            <source src="https://res.cloudinary.com/dduqhj5oh/video/upload/v1784061885/VID-20260714-WA0023_oqeiuo.mp4" type="video/mp4">
+                         </video>
+                         <div class="process_video_overlay">
+                            <div class="play_icon_wrap"><i class="fa fa-play" aria-hidden="true"></i></div>
+                         </div>
+                         <h4 class="process_video_title">3. Pump Installation &amp: Testing</h4>
+                      </div>
+                   </div>
+                   <div class="col-lg-3 col-sm-6 extra-video-item">
+                      <div class="process_video_card">
+                         <video class="process_video" playsinline muted loop preload="metadata">
+                            <source src="https://res.cloudinary.com/dduqhj5oh/video/upload/v1784061919/WhatsApp_Video_2026-07-14_at_11.05.20_PM_ki9q8a.mp4" type="video/mp4">
+                         </video>
+                         <div class="process_video_overlay">
+                            <div class="play_icon_wrap"><i class="fa fa-play" aria-hidden="true"></i></div>
+                         </div>
+                         <h4 class="process_video_title">4. Site Survey &amp; Analysis</h4>
+                      </div>
+                   </div>
+
       
-      <!-- about section end -->
-      <!-- principles section start -->
-      <div class="services_section layout_padding">
+
+                   <div class="col-lg-3 col-sm-6 extra-video-item">
+                      <div class="process_video_card">
+                         <video class="process_video" playsinline muted loop preload="metadata">
+                            <source src="https://res.cloudinary.com/dduqhj5oh/video/upload/v1784026509/AQOXTjGhv9AheUD9KRvFYJLU8dVAVib3r_S1--yvE5-6xfcCGAgm3GpXhtnwx8pkcy2WcJcM3b0MIl_l-Kheagkg-iVmrRvZb2JJyLrgrg_qtq91z.mp4" type="video/mp4">
+                         </video>
+                         <div class="process_video_overlay">
+                            <div class="play_icon_wrap"><i class="fa fa-play" aria-hidden="true"></i></div>
+                         </div>
+                         <h4 class="process_video_title">5. Your Step Title</h4>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="view_more_wrap">
+                <button type="button" class="view_more_btn" id="viewMoreProcessBtn">View More</button>
+             </div>
+          </div>
+       </div>
+       <!-- process section end -->
+
+       <!-- boundary between Our Process and Our Principles -->
+       <div class="layer_divider">
+          <div class="layer_divider_dot"></div>
+       </div>
+
+<!-- principles section start -->
+       <div class="services_section layout_padding" style="background-color: #faf8f2;">
          <div class="container-fluid">
             <div class="row">
                <div class="col-sm-12">
@@ -260,8 +506,6 @@
                            <li><a href="index.html">Home</a></li>
                            <li><a href="about.html">About</a></li>
                            <li><a href="products.html">Products</a></li>
-                           <li><a href="services.html">Services</a></li>
-                           <li><a href="principles.html">Principles</a></li>
                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                      </div>
@@ -312,7 +556,7 @@
       <!-- WhatsApp Float -->
       <a
          class="whatsapp-float"
-         href="https://wa.me/254723781069"
+         href="https://wa.me/+254727896960"
          target="_blank"
          rel="noopener noreferrer"
          aria-label="Chat with us on WhatsApp"
@@ -361,6 +605,64 @@
 
             video.addEventListener('ended', function () {
                overlay.classList.remove('is_playing');
+            });
+         });
+      </script>
+      <!-- Process video play/pause toggle -->
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.process_video_card').forEach(function (card) {
+               var video = card.querySelector('video');
+               var overlay = card.querySelector('.process_video_overlay');
+               if (!video || !overlay) return;
+
+               overlay.addEventListener('click', function () {
+                  if (video.paused) {
+                     video.play().then(function () {
+                        overlay.classList.add('is_playing');
+                     }).catch(function () {});
+                  } else {
+                     video.pause();
+                     overlay.classList.remove('is_playing');
+                  }
+               });
+
+               video.addEventListener('ended', function () {
+                  overlay.classList.remove('is_playing');
+               });
+
+               video.addEventListener('click', function () {
+                  if (!video.paused) {
+                     video.pause();
+                     overlay.classList.remove('is_playing');
+                  }
+               });
+            });
+         });
+      </script>
+      <!-- Process videos "View More" toggle: automatically detects any
+           .extra-video-item cards added inside #processVideoRow and reveals
+           them on click. If there are no extra videos yet, the button hides
+           itself so it doesn't show up with nothing to expand. -->
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            var viewMoreBtn = document.getElementById('viewMoreProcessBtn');
+            var extraItems = document.querySelectorAll('#processVideoRow .extra-video-item');
+
+            if (!viewMoreBtn) return;
+
+            if (extraItems.length === 0) {
+               viewMoreBtn.style.display = 'none';
+               return;
+            }
+
+            viewMoreBtn.addEventListener('click', function () {
+               var expanded = viewMoreBtn.getAttribute('data-expanded') === 'true';
+               extraItems.forEach(function (item) {
+                  item.style.display = expanded ? 'none' : 'flex';
+               });
+               viewMoreBtn.textContent = expanded ? 'View More' : 'View Less';
+               viewMoreBtn.setAttribute('data-expanded', String(!expanded));
             });
          });
       </script>
