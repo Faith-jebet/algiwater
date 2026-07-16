@@ -28,7 +28,6 @@
       <!-- fonts -->
       <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       
    </head>
    <body>
       <!-- header top section start -->
@@ -50,11 +49,15 @@
       <div class="header_section header_bg">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="banner_taital"><a href="index.html">ALGIWATER</a></div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <a href="index.html" class="brand_logo_link">
+                  <img src="https://res.cloudinary.com/dduqhj5oh/image/upload/v1784198992/WhatsApp_Image_2026-07-16_at_1.37.52_PM-removebg-preview_xbeldr.png" alt="Algi Water logo" class="brand_logo_img">
+                  <span class="banner_taital">ALGIWATER</span>
+               </a>
+               <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <div class="navbar-collapse" id="navbarSupportedContent">
+                  <button type="button" class="nav_close_btn" id="navCloseBtn" aria-label="Close navigation menu">&times;</button>
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
@@ -390,7 +393,83 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/plugin.js"></script>
+      <script src="js/plugin.js"></script>
       <script src="js/custom.js"></script>
+
+<script>
+   (function () {
+      const toggler = document.querySelector('.navbar-toggler');
+      const collapse = document.getElementById('navbarSupportedContent');
+      if (!toggler || !collapse) {
+         return;
+      }
+
+      function closeMenu() {
+         collapse.classList.remove('show');
+         toggler.classList.remove('is-open');
+         toggler.setAttribute('aria-expanded', 'false');
+         document.body.classList.remove('nav-open');
+      }
+
+      function openMenu() {
+         // clear any inline style/attribute leftover from Bootstrap's collapse JS
+         // (in case it's still initialized elsewhere) so nothing overrides our CSS
+         collapse.style.removeProperty('height');
+         collapse.style.removeProperty('display');
+         collapse.classList.add('show');
+         toggler.classList.add('is-open');
+         toggler.setAttribute('aria-expanded', 'true');
+         document.body.classList.add('nav-open');
+      }
+
+      toggler.addEventListener('click', function (event) {
+         event.preventDefault();
+         event.stopPropagation();
+         event.stopImmediatePropagation();
+         if (collapse.classList.contains('show')) {
+            closeMenu();
+         } else {
+            openMenu();
+         }
+      }, true);
+
+      // close menu when the X button is tapped
+      const closeBtn = document.getElementById('navCloseBtn');
+      if (closeBtn) {
+         closeBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeMenu();
+         });
+      }
+
+      // close menu when a nav link is tapped (mobile UX)
+      collapse.querySelectorAll('.nav-link').forEach(function (link) {
+         link.addEventListener('click', closeMenu);
+      });
+
+      // close menu when tapping outside it
+      document.addEventListener('click', function (event) {
+         if (!collapse.contains(event.target) && !toggler.contains(event.target)) {
+            closeMenu();
+         }
+      });
+
+      // close menu on resize up to desktop width
+      window.addEventListener('resize', function () {
+         if (window.innerWidth > 991) {
+            closeMenu();
+         }
+      });
+
+      // close menu on Escape key
+      document.addEventListener('keydown', function (event) {
+         if (event.key === 'Escape') {
+            closeMenu();
+         }
+      });
+   }());
+</script>
+
    </body>
 </html>

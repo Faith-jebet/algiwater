@@ -29,235 +29,6 @@
       <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-       <!-- Inline styles for the about-page video card (add to style.css and remove this block if you prefer) -->
-       <style>
-         /* Bootstrap rows are flex containers with align-items: stretch by default,
-            so both col-md-6 children already match height. We use flex-grow all the
-            way down instead of height:100% chains, since percentage heights break
-            silently if any ancestor lacks a definite height. */
-         .about_section .row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: stretch;
-         }
-         .about_section .row > [class*="col-"] {
-            display: flex;
-            flex-direction: column;
-         }
-         .about_section .video_card {
-            position: relative;
-            flex: 1 1 auto;
-            width: 100%;
-            min-height: 320px; /* fallback for very short text columns */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-         }
-         .about_section .video_card_inner {
-            position: relative;
-            flex: 1 1 auto;
-            width: 100%;
-max-height: none;
-            background: #000;
-         }
-         .about_section .video_poster {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            z-index: 1;
-         }
-         .about_section .video_play_overlay {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(0,0,0,0.35);
-            cursor: pointer;
-            pointer-events: auto;
-            transition: background 0.25s ease;
-         }
-         .about_section .video_play_overlay:hover {
-            background: rgba(0,0,0,0.5);
-         }
-         .about_section .video_play_overlay.is_playing {
-            opacity: 0;
-            pointer-events: none;
-         }
-         .about_section .play_icon_wrap {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: #d10000;
-         }
-         .about_section .play_text {
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-         }
-
-</style>
-
-        <!-- Process video cards -->
-       <style>
-          .process_video_row {
-             max-width: 1100px;
-             margin-left: auto;
-             margin-right: auto;
-          }
-          .process_video_card {
-             position: relative;
-             border-radius: 14px;
-             overflow: hidden;
-             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-             background: #000;
-             margin-bottom: 30px;
-             transition: transform 0.25s ease, box-shadow 0.25s ease;
-          }
-          .process_video_card:hover {
-             transform: translateY(-4px);
-             box-shadow: 0 14px 32px rgba(0,0,0,0.2);
-          }
-          .process_video_card video {
-             width: 100%;
-             display: block;
-             aspect-ratio: 16 / 9;
-             object-fit: cover;
-          }
-          .process_video_overlay {
-             position: absolute;
-             inset: 0;
-             background: rgba(0,0,0,0.3);
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             cursor: pointer;
-             transition: background 0.25s ease;
-             z-index: 2;
-          }
-          .process_video_overlay:hover {
-             background: rgba(0,0,0,0.45);
-          }
-          .process_video_overlay.is_playing {
-             opacity: 0;
-             pointer-events: none;
-          }
-          .process_video_overlay .play_icon_wrap {
-             width: 56px;
-             height: 56px;
-             border-radius: 50%;
-             background: #fff;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             font-size: 18px;
-             color: #d10000;
-          }
-          .process_video_title {
-             position: absolute;
-             bottom: 0;
-             left: 0;
-             right: 0;
-             padding: 12px 16px;
-             background: linear-gradient(transparent, rgba(0,0,0,0.7));
-             color: #fff;
-             font-weight: 600;
-             font-size: 16px;
-             z-index: 3;
-             margin: 0;
-          }
-
-          /* Smaller, more cards per row on large screens: back to 4-up on
-             desktop and 3-up on tablets, so individual videos stay compact
-             instead of being blown up to half the page width. */
-          @media (min-width: 992px) {
-             .process_video_row .col-lg-3 {
-                flex: 0 0 33.3333%;
-                max-width: 33.3333%;
-             }
-             .process_video_title { font-size: 16px; padding: 12px 16px; }
-          }
-          @media (min-width: 768px) and (max-width: 991px) {
-             .process_video_row .col-lg-3 {
-                flex: 0 0 50%;
-                max-width: 50%;
-             }
-          }
-          @media (max-width: 575px) {
-             .process_video_row .col-sm-6 {
-                flex: 0 0 100%;
-                max-width: 100%;
-             }
-             .process_video_title { font-size: 14px; padding: 10px 14px; }
-          }
-
-          /* Extra videos start hidden; JS reveals them when "View More" is clicked.
-             Any new video card added with class "extra-video-item" will automatically
-             be picked up. */
-          .extra-video-item { display: none; }
-
-          .view_more_wrap {
-             text-align: center;
-             margin-top: 10px;
-             margin-bottom: 10px;
-          }
-          .view_more_btn {
-             display: inline-block;
-             padding: 10px 32px;
-             background: #d10000;
-             color: #fff;
-             border: none;
-             border-radius: 30px;
-             font-weight: 600;
-             font-size: 15px;
-             letter-spacing: 0.5px;
-             cursor: pointer;
-             transition: background 0.25s ease, transform 0.2s ease;
-          }
-          .view_more_btn:hover {
-             background: #a80000;
-             transform: translateY(-2px);
-          }
-          .view_more_btn:focus {
-             outline: none;
-             box-shadow: 0 0 0 3px rgba(209,0,0,0.3);
-          }
-       </style>
-
-       <!-- Boundaries between About / Process / Principles layers -->
-       <style>
-          .layer_divider {
-             max-width: 1200px;
-             margin: 0 auto;
-             padding: 0 15px;
-          }
-          .layer_divider::before {
-             content: "";
-             display: block;
-             height: 1px;
-             background: linear-gradient(
-                90deg,
-                rgba(209,0,0,0) 0%,
-                rgba(209,0,0,0.35) 20%,
-                rgba(209,0,0,0.35) 80%,
-                rgba(209,0,0,0) 100%
-             );
-          }
-       </style>
-
    </head>
    <body>
       <!-- header top section start -->
@@ -278,18 +49,22 @@ max-height: none;
       <!-- header section start -->
       <div class="header_section header_bg">
          <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="banner_taital"><a href="index.html">ALGIWATER</a></div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <nav class="navbar navbar-expand-lg navbar-light text-light">
+               <a href="index.html" class="brand_logo_link">
+                  <img src="https://res.cloudinary.com/dduqhj5oh/image/upload/v1784198992/WhatsApp_Image_2026-07-16_at_1.37.52_PM-removebg-preview_xbeldr.png" alt="Algi Water logo" class="brand_logo_img">
+                  <span class="banner_taital">ALGIWATER</span>
+               </a>
+               <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <div class="navbar-collapse" id="navbarSupportedContent">
+                  <button type="button" class="nav_close_btn" id="navCloseBtn" aria-label="Close navigation menu">&times;</button>
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link active  " href="about.html">About</a>
+                     <li class="nav-item active">
+                        <a class="nav-link" href="about.html">About</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="products.html">Products</a>
@@ -657,6 +432,78 @@ max-height: none;
                viewMoreBtn.setAttribute('data-expanded', String(!expanded));
             });
          });
+      </script>
+      <script>
+         (function () {
+            const toggler = document.querySelector('.navbar-toggler');
+            const collapse = document.getElementById('navbarSupportedContent');
+            if (!toggler || !collapse) {
+               return;
+            }
+
+            function closeMenu() {
+               collapse.classList.remove('show');
+               toggler.classList.remove('is-open');
+               toggler.setAttribute('aria-expanded', 'false');
+               document.body.classList.remove('nav-open');
+            }
+
+            function openMenu() {
+               collapse.style.removeProperty('height');
+               collapse.style.removeProperty('display');
+               collapse.classList.add('show');
+               toggler.classList.add('is-open');
+               toggler.setAttribute('aria-expanded', 'true');
+               document.body.classList.add('nav-open');
+            }
+
+            toggler.addEventListener('click', function (event) {
+               event.preventDefault();
+               event.stopPropagation();
+               event.stopImmediatePropagation();
+               if (collapse.classList.contains('show')) {
+                  closeMenu();
+               } else {
+                  openMenu();
+               }
+            }, true);
+
+           // <!-- close menu when the x button is tapped -->
+            const closeBtn = document.getElementById('navCloseBtn');
+            if (closeBtn) {
+               closeBtn.addEventListener('click', function (event) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  closeMenu();
+               });
+            }
+
+        // <!-- close menu when a nav link is tapped (mobile UX) -->
+         collapse.querySelectorAll('.nav-link').forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+            });
+
+            //  <!-close menu when tapping outside it-  -->
+            document.addEventListener('click', function (event) {
+                  if (!collapse.contains(event.target) && !toggler.contains(event.target)) {
+                     closeMenu();
+                  }
+            });
+
+            //close menu when resize up to desktop width
+            window.addEventListener('resize', function () {
+               if (window.innerWidth >= 992) {
+                  closeMenu();
+               }
+            });
+
+            //close menu when pressing Escape key
+            document.addEventListener('keydown', function (event) {
+               if (event.key === 'Escape') {
+                  closeMenu();
+               }
+            });
+         }());
       </script>
    </body>
 </html>
