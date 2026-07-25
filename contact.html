@@ -68,6 +68,21 @@
                      <li class="nav-item">
                         <a class="nav-link" href="products.html">Products</a>
                      </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+                        <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                           <a class="dropdown-item" href="services.html#water-treatment">Water Treatment</a>
+                           <a class="dropdown-item" href="services.html#reverse-osmosis">Reverse Osmosis Systems</a>
+                           <a class="dropdown-item" href="services.html#filtration">Filtration</a>
+                           <a class="dropdown-item" href="services.html#sand-filters">Sand Filters</a>
+                           <a class="dropdown-item" href="services.html#ultra-filtration">Ultra-Filtration</a>
+                           <a class="dropdown-item" href="services.html#water-softeners">Water Softeners</a>
+                           <a class="dropdown-item" href="services.html#disinfection-sterilization">Disinfection and Sterilization</a>
+                           <a class="dropdown-item" href="services.html#sterilization">Sterilization</a>
+                           <a class="dropdown-item" href="services.html#water-disinfection">Water Disinfection</a>
+                           <a class="dropdown-item" href="services.html#market-trends">Market Trends</a>
+                        </div>
+                     </li>
                      <li class="nav-item active">
                          <a class="nav-link" href="contact.html">Contact</a>
                       </li>
@@ -77,17 +92,22 @@
          </div>
       </div>
       <!-- header section end -->
-      <!-- projects section start -->
-      <div class="header_section header_bg">
+
+      <!-- contact hero -->
+      <div class="services_page_hero">
+         <div class="container">
+            <h1 class="services_hero_title">Contact Us</h1>
+            <p class="services_hero_breadcrumb"><a href="index.html">Home</a> &rarr; Contact</p>
+         </div>
       </div>
-      <!-- header section end -->
+
       <!-- contact section start -->
-      <div class="contact_section layout_padding">
+      <div class="services_detail_section layout_padding">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <h1 class="contact_taital">
-                     <span class="section_title">Contact Us<span class="title_underline"></span></span> 
+                     <span class="section_title">Get In Touch<span class="title_underline"></span></span> 
                   </h1>
                </div>
             </div>
@@ -249,7 +269,7 @@
       }
 
       // close menu when a nav link is tapped (mobile UX)
-      collapse.querySelectorAll('.nav-link').forEach(function (link) {
+      collapse.querySelectorAll('.nav-link:not(.dropdown-toggle), .dropdown-item').forEach(function (link) {
          link.addEventListener('click', closeMenu);
       });
 
